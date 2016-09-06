@@ -1,0 +1,5 @@
+package me.maffew.enums;
+
+public enum GameStatus {
+    WAITING, INGAME, CLOSING;
+}
