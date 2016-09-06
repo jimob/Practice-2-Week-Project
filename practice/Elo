@@ -1,0 +1,9 @@
+package me.maffew.practice;
+
+public class Elo {
+
+    public float MINIMUM_ELO = 700;
+    public float DEFAULT_ELO = 1000;
+
+
+}
