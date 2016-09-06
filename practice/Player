@@ -1,0 +1,11 @@
+package me.maffew.practice;
+
+import java.util.UUID;
+
+public class Player {
+
+    private UUID uuid;
+    private Integer elo;
+
+
+}
