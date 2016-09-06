@@ -1,0 +1,32 @@
+package me.maffew.queue;
+
+import me.maffew.arenas.Arena;
+import me.maffew.practice.Main;
+
+import java.util.ArrayList;
+
+public class Queue {
+
+    private Main plugin;
+    private Arena arena;
+    private ArrayList<DuelRequests> requests = new ArrayList();
+
+
+    public Queue(Main p, Arena arena) {
+        this.plugin = p;
+        this.arena = arena;
+        p.queue.add(this);
+    }
+
+    public ArrayList<DuelRequests> getRequests() {
+        return this.requests;
+    }
+
+    public DuelRequests getRequest() {
+        if(this.requests.isEmpty()) {
+            return null;
+        }
+        return (DuelRequests)this.requests.get(0);
+    }
+
+}
