@@ -1,0 +1,29 @@
+package me.maffew.listeners;
+
+import me.maffew.practice.Main;
+import org.bukkit.GameMode;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+
+public class Join implements Listener {
+
+    Main plugin;
+
+    public Join(Main p) {
+        this.plugin = p;
+    }
+
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent e) {
+        final Player p = e.getPlayer();
+        e.setJoinMessage(null);
+        p.setGameMode(GameMode.SURVIVAL);
+
+    }
+
+
+}
