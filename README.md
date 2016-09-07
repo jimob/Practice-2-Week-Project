@@ -1,4 +1,4 @@
-# ${1:Practice Plugin/Dueling Plugin}
+# Practice Plugin/Dueling Plugin
 TODO: Write a project description
 ## Installation
 TODO: Describe the installation process
