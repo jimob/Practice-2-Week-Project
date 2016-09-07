@@ -1,0 +1,31 @@
+package me.maffew.kits;
+
+import me.maffew.practice.Main;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+public class Inventories {
+
+    private Inventory kitList = Bukkit.createInventory(null, 9, "Kits");
+    private Main plugin;
+
+    public Inventories(Main p) {
+        this.plugin = p;
+        p.inventories.add(this);
+    }
+
+    public void kitList(Player p) {
+        ItemStack noDebuff = new ItemStack(Material.DIAMOND_SWORD);
+        ItemMeta meta = noDebuff.getItemMeta();
+        meta.setDisplayName("&1No Debuff");
+        noDebuff.setItemMeta(meta);
+        this.kitList.setItem(0, noDebuff);
+
+        p.openInventory(this.kitList);
+    }
+
+}
