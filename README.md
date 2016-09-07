@@ -1,18 +1,18 @@
 # Practice Plugin/Dueling Plugin
-TODO: Write a project description
+This plugin essentially will allow any player to duel another player using a certain command and then choose a kit they would like to battle with. There will also be built in leaderboards and ELO so any player can play competitively to be the best on the server. 
 ## Installation
-TODO: Describe the installation process
+To use the plugin, just simply drag and drop it into the plugin folder. There are editable YAML files which you can change for players and server messages.
 ## Usage
-TODO: Write usage instructions
-## Contributing
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
-## History
-TODO: Write history
-## Credits
-TODO: Write credits
-## License
-TODO: Write license
+Must be using bukkit/spigot 1.7.10!
+
+Below are a list of commands which are going to be usable.
+```sh
+/duel <player>
+/leaderboard
+/elo <reset/set>
+/spectate
+```
+## Release History
+
+* 0.0.1
+    * CHANGE: Set up the base code to work around
