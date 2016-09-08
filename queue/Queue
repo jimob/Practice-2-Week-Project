@@ -2,6 +2,8 @@ package me.maffew.queue;
 
 import me.maffew.arenas.Arena;
 import me.maffew.practice.Main;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 
@@ -9,7 +11,7 @@ public class Queue {
 
     private Main plugin;
     private Arena arena;
-    private ArrayList<DuelRequests> requests = new ArrayList();
+    public static ArrayList<DuelRequests> requests = new ArrayList();
 
 
     public Queue(Main p, Arena arena) {
@@ -22,11 +24,27 @@ public class Queue {
         return this.requests;
     }
 
-    public DuelRequests getRequest() {
-        if(this.requests.isEmpty()) {
-            return null;
+    public static boolean getRequest(Player target) {
+        if(requests.contains(target)) {
+            return false;
         }
-        return (DuelRequests)this.requests.get(0);
+        return false;
+    }
+
+    public static void addRequest(CommandSender sender, Player dueled) {
+        requests.add((DuelRequests) sender);
+        requests.add((DuelRequests) dueled);
+        return;
+    }
+
+    public void removeRequest(DuelRequests requests) {
+        this.requests.remove(requests);
+        this.requests.remove(requests.getRecievedReq());
+        this.requests.remove(requests.getReq());
+    }
+
+    public Arena getArena() {
+        return this.arena;
     }
 
 }
