@@ -1,6 +1,12 @@
 package me.maffew.commands;
 
 
+import me.maffew.arenas.Arena;
+import me.maffew.practice.Main;
+import me.maffew.queue.DuelRequests;
+import me.maffew.queue.Queue;
+import me.maffew.utils.Message;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -8,10 +14,46 @@ import org.bukkit.entity.Player;
 
 public class Duel implements CommandExecutor {
 
+    Main p;
+    Arena arena;
+    Queue queue = new Queue(p, arena);
+
     public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
         if(sender instanceof Player) {
             Player p = (Player) sender;
-
+            if(cmd.getName().equalsIgnoreCase("duel")) {
+                if(args[0] == null) {
+                    Message.send(sender, "&4Please specify a player!");
+                } else {
+                    Player target = Bukkit.getServer().getPlayer(args[0]);
+                    Message.send(p, "&bYou have dueled " + args[0]);
+                    Message.send(target, "&bYou have been dueled by " + p);
+                    Queue.addRequest(sender, target);
+                }
+            } else if(cmd.getName().equalsIgnoreCase("accept")) {
+                if(args[0] == null) {
+                    Message.send(sender, "&4Please specify who you're accepting a duel from!");
+                } else {
+                    Player target = Bukkit.getServer().getPlayer(args[0]);
+                    if(!Queue.getRequest(target)) {
+                        Message.send(p, "&4You have not been dueled by this player!");
+                    } else {
+                        //TP THEM TO THE ARENA
+                        //START GAME
+                    }
+                }
+            } else if(cmd.getName().equalsIgnoreCase("deny")) {
+                if(args[0] == null) {
+                    Message.send(sender, "&4Please specify who's request you're denying!");
+                } else {
+                    Player target = Bukkit.getServer().getPlayer(args[0]);
+                    if(!Queue.getRequest(target)) {
+                        Message.send(p, "&4You have not been dueled by this player!")
+                    } else {
+                        Queue.removeRequest(test);
+                    }
+                }
+            }
         }
 
         return true;
