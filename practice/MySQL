@@ -28,10 +28,6 @@ public class MySQL {
         getElo(username);
     }
 
-    public void getElo(String username) {
-
-    }
-
     public void closeConnection() {
         System.out.println("MySQL : Closing connection");
         if (this.con != null) {
@@ -43,4 +39,26 @@ public class MySQL {
             }
         }
     }
+	
+	public void getCurrentELO(Connection con, String dbName, UUID uuid) throws SQLException {
+		Statement stmt = null;
+		String elo = "select ELO " + "from " + dbName + ".players" + " WHERE UUID = "'" + uuid + "'";
+		
+		try {
+			stmt = con.createStatement();
+			Result rs = stmt.executeQuery(query);
+			while(rs.next()) {
+				String currentELO = rs.getString("ELO");
+				int currentELO = rs.getInt("ELO");
+				return currentELO;
+			}
+		} catch (SQLException e) {
+			System.out.println("MySQL : Error getting player ELO");
+		} finally {
+			if(stmt != null) {
+				stmt.close();
+			}
+		}
+	}
+	
 }
