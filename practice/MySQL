@@ -61,4 +61,11 @@ public class MySQL {
 		}
 	}
 	
+	public void calculateELO(Player a, Player b) {
+		int player1 = a.getCurrentELO();
+		int player2 = b.getCurrentELO();
+		
+		
+	}
+	
 }
