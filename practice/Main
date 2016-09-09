@@ -29,6 +29,7 @@ public class Main extends JavaPlugin {
     Locations loc;
     ExcessCmds utils;
     Queue main_queue;
+    Inventories inv;
     public FileConfiguration config;
     PluginDescriptionFile pluginDescFile;
     public ArrayList<Queue> queue = new ArrayList();
@@ -69,7 +70,7 @@ public class Main extends JavaPlugin {
     public void registerListeners() {
         PluginManager pm = getServer().getPluginManager();
         //pm.registerEvents(new Interact(this), this);
-        pm.registerEvents(new Join(this), this);
+        pm.registerEvents(new Join(this, inv), this);
     }
 
     public FileConfiguration config() {
