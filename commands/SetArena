@@ -1,0 +1,49 @@
+package me.maffew.commands;
+
+import me.maffew.arenas.Arena;
+import me.maffew.practice.Main;
+import me.maffew.utils.Message;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+public class SetArena implements CommandExecutor {
+
+    Main plugin;
+    Arena arena;
+
+    public SetArena(Main p, Arena a) {
+        this.plugin = p;
+        this.arena = a;
+    }
+
+    public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
+        if(sender instanceof Player) {
+            Player p = (Player) sender;
+            if(cmd.getName().equalsIgnoreCase("arena")) {
+                if(args[0] == null) {
+                    //Message.send(p, CURRENT ARENA);
+                    Message.send(p, "&bCreate arena : /arena <create/remove> <name>");
+                    Message.send(p, "&bSet arena : /arena set <name> <x/y/z>");
+                } else if(args[0] == "create" && args[1] == null) {
+                    Message.send(p, "&bCreate arena : /arena <create/remove> <name>");
+                } else if(args[0] == "remove" && args[1] == null) {
+                    Message.send(p, "&bCreate arena : /arena <create/remove> <name>");
+                } else if(args[0] == "create") {
+                    String arenaName = args[1];
+                    plugin.arenas.set("arena.", arenaName);
+                    plugin.arenas.set("arena.x", "x"/**get PLAYERS x coord */);
+                    plugin.arenas.set("arena.x", "y"/**get PLAYERS y coord */);
+                    plugin.arenas.set("arena.x", "z"/**get PLAYERS z coord */);
+                    //Store it in arena.yml
+                    //Check if its already been made
+                } else if(args[0] == "remove") {
+                    String arenaName = args[1];
+                }
+            }
+        }
+
+        return false;
+    }
+}
