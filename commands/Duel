@@ -15,8 +15,13 @@ import org.bukkit.entity.Player;
 public class Duel implements CommandExecutor {
 
     Main p;
-    Arena arena;
-    Queue queue = new Queue(p, arena);
+    Queue queue;
+    DuelRequests requests;
+
+    public Duel(Main plugin, Queue queue) {
+        this.p = plugin;
+        this.queue = queue;
+    }
 
     public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
         if(sender instanceof Player) {
@@ -48,9 +53,9 @@ public class Duel implements CommandExecutor {
                 } else {
                     Player target = Bukkit.getServer().getPlayer(args[0]);
                     if(!Queue.getRequest(target)) {
-                        Message.send(p, "&4You have not been dueled by this player!")
+                        Message.send(p, "&4You have not been dueled by this player!");
                     } else {
-                        Queue.removeRequest(test);
+                        queue.removeRequest(requests);
                     }
                 }
             }
