@@ -2,6 +2,7 @@ package me.maffew.kits;
 
 import me.maffew.practice.Main;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -19,11 +20,16 @@ public class Inventories {
     }
 
     public void kitList(Player p) {
-        ItemStack noDebuff = new ItemStack(Material.DIAMOND_SWORD);
-        ItemMeta meta = noDebuff.getItemMeta();
-        meta.setDisplayName("&1No Debuff");
-        noDebuff.setItemMeta(meta);
-        this.kitList.setItem(0, noDebuff);
+        ItemStack rankedList = new ItemStack(Material.DIAMOND_SWORD);
+        ItemMeta meta = rankedList.getItemMeta();
+        meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&bRanked Styles!"));
+        rankedList.setItemMeta(meta);
+        this.kitList.setItem(0, rankedList);
+
+        ItemStack unrankedList = new ItemStack(Material.IRON_SWORD);
+        ItemMeta ur = unrankedList.getItemMeta();
+        ur.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&bRanked Styles!"));
+        this.kitList.setItem(1, unrankedList);
 
         p.openInventory(this.kitList);
     }
