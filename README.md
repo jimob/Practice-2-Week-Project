@@ -11,6 +11,9 @@ Below are a list of commands which are going to be usable.
 /leaderboard
 /elo <reset/set>
 /spectate
+/accept <player>
+/deny <player>
+/help
 ```
 ## Release History
 
