@@ -8,8 +8,10 @@ import me.maffew.listeners.Interact;
 import me.maffew.listeners.Join;
 import me.maffew.queue.Queue;
 import me.maffew.utils.ExcessCmds;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
@@ -34,6 +36,7 @@ public class Main extends JavaPlugin {
     PluginDescriptionFile pluginDescFile;
     public ArrayList<Queue> queue = new ArrayList();
     public ArrayList<Inventories> inventories = new ArrayList();
+    public Inventory rankedKitList = Bukkit.createInventory(null, 9, "Ranked Styles");
     Connection conn = DriverManager.getConnection("jdbc:mysql://" + this.plugin.getConfig().getString("MySQL.hostname") + "/" + this.plugin.getConfig().getString("MySQL.database"), this.plugin.getConfig().getString("MySQL.username"), this.plugin.getConfig().getString("MySQL.password"));
 
     public Main() throws SQLException {
