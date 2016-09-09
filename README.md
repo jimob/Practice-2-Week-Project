@@ -19,3 +19,9 @@ Below are a list of commands which are going to be usable.
 
 * 0.0.1
     * CHANGE: Set up the base code to work around
+
+## TODO
+- Check Current Arena
+- Set/Remove/Add Arena
+- ELO System
+- DUEL Teleporting
