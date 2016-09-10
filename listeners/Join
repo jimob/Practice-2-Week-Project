@@ -17,8 +17,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class Join implements Listener {
 
-    Main plugin;
-    Inventories inventories;
+    private Main plugin;
+    private Inventories inventories;
 
     public Join(Main p, Inventories inv) {
         this.plugin = p;
