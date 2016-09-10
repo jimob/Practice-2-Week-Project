@@ -2,6 +2,8 @@ package me.maffew.practice;
 
 import me.maffew.commands.Duel;
 import me.maffew.commands.Help;
+import me.maffew.commands.SetSpawn;
+import me.maffew.commands.Spawn;
 import me.maffew.config.Locations;
 import me.maffew.kits.Inventories;
 import me.maffew.listeners.Interact;
@@ -28,24 +30,26 @@ public class Main extends JavaPlugin {
 
     public Plugin plugin;
     MySQL sql;
-    Locations loc;
-    ExcessCmds utils;
-    Queue main_queue;
-    Inventories inv;
+    private Locations loc;
+    private ExcessCmds utils;
+    private Queue main_queue;
+    private Inventories inv;
     public FileConfiguration config;
-    PluginDescriptionFile pluginDescFile;
+    public FileConfiguration arenas;
+    private PluginDescriptionFile pluginDescFile;
     public ArrayList<Queue> queue = new ArrayList();
     public ArrayList<Inventories> inventories = new ArrayList();
     public Inventory rankedKitList = Bukkit.createInventory(null, 9, "Ranked Styles");
     Connection conn = DriverManager.getConnection("jdbc:mysql://" + this.plugin.getConfig().getString("MySQL.hostname") + "/" + this.plugin.getConfig().getString("MySQL.database"), this.plugin.getConfig().getString("MySQL.username"), this.plugin.getConfig().getString("MySQL.password"));
 
-    public Main() throws SQLException {
+    public Main(Locations locations) throws SQLException {
     }
 
     @Override
     public void onEnable() {
         System.out.println("Practice : Enabled");
         pluginDescFile = getDescription();
+        arenas = Locations.getNewConfig();
         config = getConfig();
         saveDefaultConfig();
         getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
@@ -55,22 +59,24 @@ public class Main extends JavaPlugin {
         registerListeners();
     }
 
-    public void loadConfigs() {
+    private void loadConfigs() {
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
 
         this.loc.newYML = new File(getDataFolder(), "arenas.yml");
-        this.loc.newConfig = YamlConfiguration.loadConfiguration(this.loc.newYML);
+        Locations.newConfig = YamlConfiguration.loadConfiguration(this.loc.newYML);
     }
 
-    public void registerCommands() {
+    private void registerCommands() {
         getCommand("help").setExecutor(new Help(this, utils));
         getCommand("duel").setExecutor(new Duel(this, main_queue));
         getCommand("accept").setExecutor(new Duel(this, main_queue));
         getCommand("deny").setExecutor(new Duel(this, main_queue));
+        getCommand("spawn").setExecutor(new Spawn(this));
+        getCommand("setspawn").setExecutor(new SetSpawn(this));
     }
 
-    public void registerListeners() {
+    private void registerListeners() {
         PluginManager pm = getServer().getPluginManager();
         //pm.registerEvents(new Interact(this), this);
         pm.registerEvents(new Join(this, inv), this);
