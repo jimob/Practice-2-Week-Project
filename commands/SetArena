@@ -9,10 +9,12 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.Scanner;
+
 public class SetArena implements CommandExecutor {
 
-    Main plugin;
-    Arena arena;
+    private Main plugin;
+    private Arena arena;
 
     public SetArena(Main p, Arena a) {
         this.plugin = p;
@@ -27,21 +29,24 @@ public class SetArena implements CommandExecutor {
                     //Message.send(p, CURRENT ARENA);
                     Message.send(p, "&bCreate arena : /arena <create/remove> <name>");
                     Message.send(p, "&bSet arena : /arena set <name> <x/y/z>");
-                } else if(args[0] == "create" && args[1] == null) {
+                } else if(args[0].equalsIgnoreCase("create") && args[1] == null) {
                     Message.send(p, "&bCreate arena : /arena <create/remove> <name>");
-                } else if(args[0] == "remove" && args[1] == null) {
+                } else if(args[0].equalsIgnoreCase("remove") && args[1] == null) {
                     Message.send(p, "&bCreate arena : /arena <create/remove> <name>");
-                } else if(args[0] == "create") {
+                } else if(args[0].equalsIgnoreCase("create")){
                     String arenaName = args[1];
-                    plugin.arenas.set("arena.", arenaName);
-                    plugin.arenas.set("arena.x", "x"/**get PLAYERS x coord */);
-                    plugin.arenas.set("arena.x", "y"/**get PLAYERS y coord */);
-                    plugin.arenas.set("arena.x", "z"/**get PLAYERS z coord */);
-                    playerLoc(p, args[1]);
-                    //Store it in arena.yml
-                    //Check if its already been made
-                } else if(args[0] == "remove") {
+                    if(plugin.arenas.contains(arenaName)) {
+                        Message.send(p, "&bAn arena under that name has already been created.");
+                    } else {
+                        playerLocArenaSave(p, args[1]);
+                    }
+                } else if(args[0].equalsIgnoreCase("remove")) {
                     String arenaName = args[1];
+                    if(!plugin.arenas.contains(arenaName)) {
+                        Message.send(p, "&bThere is no arena with that name stored.");
+                    } else {
+                        removeArena(p, arenaName);
+                    }
                 }
             }
         }
@@ -49,18 +54,26 @@ public class SetArena implements CommandExecutor {
         return false;
     }
 
-    public void playerLoc(Player p, String arenaName) {
+    private void playerLocArenaSave(Player p, String arenaName) {
         Location loc = p.getLocation();
         int x = loc.getBlockX();
         int y = loc.getBlockY();
         int z = loc.getBlockZ();
         String worldName = p.getWorld().getName();
 
-        plugin.arenas.set("arena.x", x);
-        plugin.arenas.set("arena.y", y);
-        plugin.arenas.set("arena.z", z);
+        plugin.arenas.set("arena." + arenaName, null);
+        plugin.arenas.set("arena." + arenaName + ".x", x);
+        plugin.arenas.set("arena." + arenaName + ".y", y);
+        plugin.arenas.set("arena." + arenaName + ".z", z);
 
         Message.send(p, "&bArena " + arenaName + " has been set.");
-        return;
+    }
+
+    private void removeArena(Player p, String arenaName) {
+        plugin.arenas.set("arena." + arenaName + ".x", null);
+        plugin.arenas.set("arena." + arenaName + ".y", null);
+        plugin.arenas.set("arena." + arenaName + ".z", null);
+
+        Message.send(p, "&bArena " + arenaName + " has been cleared.");
     }
 }
