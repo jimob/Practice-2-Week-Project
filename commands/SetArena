@@ -19,6 +19,9 @@ public class SetArena implements CommandExecutor {
         this.plugin = p;
         Arena arena = a;
     }
+    
+    //I saved the players location instead of letting them set the 2 spawns for that arena
+    //Job for 12/09/2016 = set 2 spawns for arena to be teleported to.
 
     public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
         if(sender instanceof Player) {
