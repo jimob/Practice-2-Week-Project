@@ -13,10 +13,10 @@ import org.bukkit.entity.Player;
 
 public class Help implements CommandExecutor {
 
-    Main p;
+    private Main p;
     private ExcessCmds utils;
 
-    public Help(Main plugin, Arena arena, ExcessCmds utils) {
+    public Help(Main plugin, ExcessCmds utils) {
         this.p = plugin;
         this.utils = utils;
     }
