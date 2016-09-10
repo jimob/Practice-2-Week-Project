@@ -14,11 +14,10 @@ import java.util.Scanner;
 public class SetArena implements CommandExecutor {
 
     private Main plugin;
-    private Arena arena;
 
     public SetArena(Main p, Arena a) {
         this.plugin = p;
-        this.arena = a;
+        Arena arena = a;
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
