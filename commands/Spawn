@@ -9,12 +9,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-/**
- * Created by Matt on 09/09/2016.
- */
 public class Spawn implements CommandExecutor {
 
-    Main plugin;
+    private Main plugin;
 
     public Spawn(Main p) {
         this.plugin = p;
@@ -36,7 +33,7 @@ public class Spawn implements CommandExecutor {
         return false;
     }
 
-    public Location getSpawn() {
+    private Location getSpawn() {
         try {
             int x = plugin.config.getInt("Spawn.x");
             int y = plugin.config.getInt("Spawn.y");
