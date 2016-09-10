@@ -11,7 +11,7 @@ public class Queue {
 
     private Main plugin;
     private Arena arena;
-    public static ArrayList<DuelRequests> requests = new ArrayList();
+    private static ArrayList<DuelRequests> requests = new ArrayList();
 
 
     public Queue(Main p, Arena arena) {
@@ -21,7 +21,7 @@ public class Queue {
     }
 
     public ArrayList<DuelRequests> getRequests() {
-        return this.requests;
+        return requests;
     }
 
     public static boolean getRequest(Player target) {
@@ -34,13 +34,12 @@ public class Queue {
     public static void addRequest(CommandSender sender, Player dueled) {
         requests.add((DuelRequests) sender);
         requests.add((DuelRequests) dueled);
-        return;
     }
 
     public void removeRequest(DuelRequests requests) {
-        this.requests.remove(requests);
-        this.requests.remove(requests.getRecievedReq());
-        this.requests.remove(requests.getReq());
+        Queue.requests.remove(requests);
+        Queue.requests.remove(requests.getRecievedReq());
+        Queue.requests.remove(requests.getReq());
     }
 
     public Arena getArena() {
