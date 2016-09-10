@@ -13,8 +13,8 @@ import org.bukkit.inventory.ItemStack;
 
 public class Interact implements Listener {
 
-    Main plugin;
-    Inventories inventories;
+    private Main plugin;
+    private Inventories inventories;
 
     public Interact(Main p, Inventories inv) {
         this.plugin = p;
