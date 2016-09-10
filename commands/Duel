@@ -14,9 +14,9 @@ import org.bukkit.entity.Player;
 
 public class Duel implements CommandExecutor {
 
-    Main p;
-    Queue queue;
-    DuelRequests requests;
+    private Main p;
+    private Queue queue;
+    private DuelRequests requests;
 
     public Duel(Main plugin, Queue queue) {
         this.p = plugin;
