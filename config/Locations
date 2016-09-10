@@ -10,8 +10,8 @@ import java.io.InputStream;
 
 public class Locations {
     public File newYML;
-    public FileConfiguration newConfig;
-    Main plugin;
+    public static FileConfiguration newConfig;
+    private Main plugin;
 
     public Locations(Main p) {
         this.plugin = p;
@@ -19,15 +19,15 @@ public class Locations {
 
     public void saveCustomConfig() {
         try {
-            this.newConfig.save(this.newYML);
+            newConfig.save(this.newYML);
         } catch (IOException e) {
             System.out.println("Practice : Cannot load arenas file.");
             System.out.println("Practice : Error - " + e);
         }
     }
 
-    public FileConfiguration getNewConfig() {
-        return this.newConfig;
+    public static FileConfiguration getNewConfig() {
+        return newConfig;
     }
 
     public File getNewYML() {
@@ -38,22 +38,22 @@ public class Locations {
         InputStream defaultConfig = this.plugin.getResource("arenas.yml");
         YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defaultConfig);
 
-        this.newConfig.setDefaults(defConfig);
-        this.newConfig.options().copyDefaults(true);
-        this.newConfig.options().copyDefaults();
+        newConfig.setDefaults(defConfig);
+        newConfig.options().copyDefaults(true);
+        newConfig.options().copyDefaults();
     }
 
     public void reloadNewConfig()   {
         if (this.newYML == null) {
             this.newYML = new File(this.plugin.getDataFolder(), "arenas.yml");
         }
-        this.newConfig = YamlConfiguration.loadConfiguration(this.newYML);
+        newConfig = YamlConfiguration.loadConfiguration(this.newYML);
 
         InputStream defConfigStream = this.plugin.getResource("arenas.yml");
         if (defConfigStream != null)
         {
             YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
-            this.newConfig.setDefaults(defConfig);
+            newConfig.setDefaults(defConfig);
         }
     }
 
