@@ -26,9 +26,9 @@ public class SetSpawn implements CommandExecutor {
                 int z = loc.getBlockZ();
                 String worldName = p.getWorld().getName();
 
-                plugin.config.set("Spawn.x", Integer.valueOf(x));
-                plugin.config.set("Spawn.y", Integer.valueOf(y));
-                plugin.config.set("Spawn.z", Integer.valueOf(z));
+                plugin.config.set("Spawn.x", x);
+                plugin.config.set("Spawn.y", y);
+                plugin.config.set("Spawn.z", z);
                 plugin.config.set("Spawn,world", worldName);
 
                 Message.send(p, plugin.config.getString("Messages.Help.SpawnSet"));
