@@ -8,8 +8,8 @@ import org.bukkit.entity.Player;
 
 public class SetArena extends Arena {
 
-    Main plugin;
-    Arena arena;
+    private Main plugin;
+    private Arena arena;
 
     public SetArena(Main p, Arena arena) {
         this.plugin = p;
