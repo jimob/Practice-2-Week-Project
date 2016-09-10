@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 public class SetSpawn implements CommandExecutor {
 
-    Main plugin;
+    private Main plugin;
 
     public SetSpawn(Main p) {
         this.plugin = p;
