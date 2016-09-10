@@ -3,6 +3,7 @@ package me.maffew.commands;
 import me.maffew.arenas.Arena;
 import me.maffew.practice.Main;
 import me.maffew.utils.Message;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -36,6 +37,7 @@ public class SetArena implements CommandExecutor {
                     plugin.arenas.set("arena.x", "x"/**get PLAYERS x coord */);
                     plugin.arenas.set("arena.x", "y"/**get PLAYERS y coord */);
                     plugin.arenas.set("arena.x", "z"/**get PLAYERS z coord */);
+                    playerLoc(p, args[1]);
                     //Store it in arena.yml
                     //Check if its already been made
                 } else if(args[0] == "remove") {
@@ -45,5 +47,20 @@ public class SetArena implements CommandExecutor {
         }
 
         return false;
+    }
+
+    public void playerLoc(Player p, String arenaName) {
+        Location loc = p.getLocation();
+        int x = loc.getBlockX();
+        int y = loc.getBlockY();
+        int z = loc.getBlockZ();
+        String worldName = p.getWorld().getName();
+
+        plugin.arenas.set("arena.x", x);
+        plugin.arenas.set("arena.y", y);
+        plugin.arenas.set("arena.z", z);
+
+        Message.send(p, "&bArena " + arenaName + " has been set.");
+        return;
     }
 }
