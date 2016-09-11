@@ -1,5 +1,5 @@
 package me.maffew.enums;
 
 public enum GameStatus {
-    WAITING, INGAME, CLOSING;
+    ABOUT_TO_START, STARTER, ENDED;
 }
