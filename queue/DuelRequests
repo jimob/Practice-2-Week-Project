@@ -27,4 +27,8 @@ public class DuelRequests {
     public Arena getArena() {
         return this.arena;
     }
+    
+    public boolean getKit() {
+        return this.duelKit;
+    }
 }
