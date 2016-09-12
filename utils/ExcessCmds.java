@@ -13,15 +13,14 @@ public class ExcessCmds {
     }
 
     public void helpCommand(CommandSender p, String[] args) {
-        Message.send(p, "&8&m-----------------------------------------------------");
-        Message.send(p, this.plugin.getConfig().getString("Messages.Help.Information"));
-        Message.send(p, "&8&m-----------------------------------------------------");
-        Message.send(p, this.plugin.getConfig().getString("Messages.Help.Season"));
-        Message.send(p, this.plugin.getConfig().getString("Messages.Help.AvailableKits"));
-        Message.send(p, "");
-        Message.send(p, this.plugin.getConfig().getString("Messages.Help.HelpfulCommands"));
-        Message.send(p, this.plugin.getConfig().getString("Messages.Help.DuelCmd"));
-        Message.send(p, this.plugin.getConfig().getString("Messages.Help.Leaderboard"));
+        Message.send(p, "&8&m-----------------------------------------------------\n" 
+        + this.plugin.getConfig().getString("Messages.Help.Information") + "\n"
+        + "&8&m-----------------------------------------------------\n" 
+        + this.plugin.getConfig().getString("Messages.Help.Season") + "\n"
+        + this.plugin.getConfig().getString("Messages.Help.AvailableKits")) + "\n" 
+        + this.plugin.getConfig().getString("Messages.Help.HelpfulCommands")) + "\n"
+        + this.plugin.getConfig().getString("Messages.Help.DuelCmd")) + "\n"
+        + this.plugin.getConfig().getString("Messages.Help.Leaderboard"));
     }
 
 }
